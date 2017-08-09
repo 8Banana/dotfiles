@@ -251,7 +251,8 @@ class TetrisTab(porcupine.tabs.Tab):
                 color = COLORS[shape]
             self._canvas.itemconfig(item_id, fill=color)
 
-        self.event_generate('<<StatusChanged>>')
+        self.status = "Score %d, level %d" % (
+            self._game.score, self._game.level)
 
     def new_game(self, junk_event=None):
         if self._timeout_id is not None:
@@ -298,9 +299,6 @@ class TetrisTab(porcupine.tabs.Tab):
     def on_focus(self):
         # yes, this needs force for some reason
         self._canvas.focus_force()
-
-    def get_status(self):
-        return "Score %d, level %d" % (self._game.score, self._game.level)
 
 
 def play_tetris():
