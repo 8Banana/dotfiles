@@ -1,0 +1,105 @@
+set smooth
+set casesensitive
+set suspend
+set smarthome
+set tabsize 4
+set fill 79
+set nowrap
+set positionlog
+set quickblank
+set justifytrim
+set autoindent
+#set linenumbers
+#set tabstospaces
+
+unbind ^U main
+unbind ^_ main
+unbind M-D main
+unbind M-B main
+unbind M-F main
+unbind M-R main
+unbind M-L main
+
+bind ^Y uncut main
+bind ^L gotoline main
+bind M-D cutwordright main
+bind M-B prevword main
+bind M-F nextword main
+bind M-R redo main
+bind M-L linter main
+
+
+#### Python syntax highlighting ####
+
+syntax "python" "\.py$"
+header "^#!.*python.*"
+linter flake8
+color brightblue "\<(async|await|True|False|None|and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|nonlocal|if|import|in|is|lambda|not|or|pass|print|raise|return|try|while|with|yield)\>"
+color brightred "\<(ArithmeticError|AssertionError|AttributeError|BaseException|BlockingIOError|BrokenPipeError|BufferError|BytesWarning|ChildProcessError|ConnectionAbortedError|ConnectionError|ConnectionRefusedError|ConnectionResetError|DeprecationWarning|EOFError|Ellipsis|EnvironmentError|Exception|FileExistsError|FileNotFoundError|FloatingPointError|FutureWarning|GeneratorExit|IOError|ImportError|ImportWarning|IndentationError|IndexError|InterruptedError|IsADirectoryError|KeyError|KeyboardInterrupt|LookupError|MemoryError|NameError|NotADirectoryError|NotImplemented|NotImplementedError|OSError|OverflowError|PendingDeprecationWarning|PermissionError|ProcessLookupError|ReferenceError|ResourceWarning|RuntimeError|RuntimeWarning|StopIteration|SyntaxError|SyntaxWarning|SystemError|SystemExit|TabError|TimeoutError|TypeError|UnboundLocalError|UnicodeDecodeError|UnicodeEncodeError|UnicodeError|UnicodeTranslateError|UnicodeWarning|UserWarning|ValueError|Warning|ZeroDivisionError)\>"
+color magenta "\<(abs|all|any|ascii|bin|bool|bytearray|bytes|callable|chr|classmethod|compile|complex|copyright|credits|delattr|dict|dir|divmod|enumerate|eval|exec|exit|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|license|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|quit|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip)\>"
+color blue "\<(__all__|__file__|__doc__|__module__|__name__|__package__|__spec__|__version__|__author__|__copyright__|__license__|__dict__)\>"
+color brightmagenta "@[^(]*"
+color yellow ""[^"]*""
+color yellow "'[^']*'"
+color red "#.*$"
+color yellow start=""""[^"]" end=""""" start="'''[^']" end="'''"
+color green "(\\n|\\r|\\t)"
+
+
+### C ###
+syntax "c" "\.c$" "\.h$"
+magic "(ASCII|UTF-8 Unicode) C program text"
+color magenta "\<(NULL|float|double|bool|void|char|int|short|long|(un)?signed)\>"
+color brightblue "\<(for|if|while|do|else|case|default|switch|goto|continue|break|return|sizeof|enum|static|const|struct|union|typedef|extern|inline)\>"
+color magenta "\<((size)|((u_?)?int(8|16|32|64|ptr)))_t\>"
+color brightred "^[[:space:]]*#[[:space:]]*(define|include(_next)?|(un|ifn?)def|endif|el(if|se)|if|warning|error|pragma)"
+#color brightmagenta "'([^'\]|(\\["'abfnrtv\\]))'" "'\\(([0-3]?[0-7]{1,2}))'" "'\\x[0-9A-Fa-f]{1,2}'"
+
+# Strings.  In general you will want your strings and comments to come last,
+# because highlighting rules are applied in the order they are read in.
+color yellow ""([^"]|\\")*"" "<[^[:blank:]=]*>"
+
+# Comments.
+color red start="/\*" end="\*/"
+color red "//.*"
+
+
+#### ConfigParser/INI syntax highlighting ####
+
+syntax "ini" "\.(conf|ini)$"
+color green "^[^=]+"
+color yellow "[^=]+$"
+color brightyellow "\[.*\]"
+color red "^\s*#.*$"
+
+
+# Markdown files
+syntax "markdown" "\.(md|markdown)$"
+color brightyellow "^#.*"
+color blue "\*[^\*]+\*"
+color brightblue "\*\*[^\*]+\*\*"
+color green "!?\[.+?\]\(.+?\)"
+color magenta "\[\[.+?\]\]"
+color yellow "`[^`]*?`"
+color yellow start="```python$" end="```$"
+color red "```py$"
+
+## Here is an example for Javascript.
+
+syntax "javascript" "\.js$"
+comment "//"
+
+color green "\<(const|function|let|this|typeof|var|void|null|true|false)\>"
+color brightyellow "\<(for|if|while|with|do|else|case|default|switch)\>"
+color brightyellow "\<(export|try|throw|catch|new|delete)\>"
+color magenta "\<(continue|break|return|yield)\>"
+color brightmagenta "'([^'\]|(\\["'abfnrtv\\]))'" "'\\(([0-3]?[0-7]{1,2}))'" "'\\x[0-9A-Fa-f]{1,2}'"
+
+# Strings.
+color brightyellow "<[^= 	]*>" ""(\\.|[^"])*"" "'(\\.|[^'])*'"
+# Comments.
+color brightblue "//.*"
+color brightblue start="/\*" end="\*/"
+
+# Trailing whitespace.
+color ,green "[[:space:]]+$"
