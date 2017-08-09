@@ -1,6 +1,7 @@
 # i also have the default debian stuff in my real .bashrc, but i didn't
 # feel like including it here
 
+PATH="$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 alias py=python3.7
 alias pip='py -mpip'
 alias flake8='py -mflake8'
