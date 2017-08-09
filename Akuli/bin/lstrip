@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+# strip leading whitespace
+# usage:
+#   $ cat infile | lstrip > outfile         # strip everything
+#   $ cat infile | lstrip '.?!' > outfile   # strip punctuation
+
+import sys
+
+for line in sys.stdin:
+    line, maybe_newline, empty_string = line.partition('\n')
+    
+    sys.stdout.write(line.lstrip(*sys.argv[1:]) + maybe_newline)

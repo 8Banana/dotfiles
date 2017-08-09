@@ -1,0 +1,3 @@
+#!/bin/sh
+# grep for files recursively and open them in porcupine
+porcupine `grep -rlI "$@"`

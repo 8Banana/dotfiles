@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+#   $ pysrc os.path                 # print source code of a module
+#   $ pysrc tkinter.Label.unbind    # print code of a single object
+
+import importlib
+import inspect
+import shutil
+import subprocess
+import sys
+
+assert hasattr(subprocess, 'run'), "install a newer python lel"
+
+
+def find_object(name):
+    parts = name.split('.')
+    for i in range(len(parts), 0, -1):
+        try:
+            the_object = importlib.import_module('.'.join(parts[:i]))
+        except ImportError as e:
+            last_error = e
+            continue
+
+        for attr in parts[i:]:
+            the_object = getattr(the_object, attr)
+        return the_object
+
+    raise last_error
+
+
+def less(string):
+    linecount = string.count('\n')+1
+    if string.count('\n') < shutil.get_terminal_size().lines:
+        # it fits on the terminal
+        sys.stdout.write(string)
+    else:
+        subprocess.run('less', input=string.encode('utf-8'))
+
+
+prog, name = sys.argv
+less(inspect.getsource(find_object(name)))
