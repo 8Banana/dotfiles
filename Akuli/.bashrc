@@ -24,4 +24,7 @@ function upload {
         return 2
     fi
 
+    git push origin $branch && git push --tags origin $branch
+}
+
 cat ~/todolist 2>/dev/null
