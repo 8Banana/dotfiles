@@ -1,0 +1,1 @@
+/home/boring/dotfiles/i3/pystat.py
