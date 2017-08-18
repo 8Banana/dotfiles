@@ -11,8 +11,11 @@ set justifytrim
 set autoindent
 #set linenumbers
 #set tabstospaces
+set linenumbers
+set numbercolor white,black
 
 unbind ^U main
+unbind ^S main
 unbind ^_ main
 unbind M-D main
 unbind M-B main
@@ -22,6 +25,7 @@ unbind M-L main
 
 bind ^Y uncut main
 bind ^L gotoline main
+bind ^S savefile main
 bind M-D cutwordright main
 bind M-B prevword main
 bind M-F nextword main
