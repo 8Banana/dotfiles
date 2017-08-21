@@ -186,7 +186,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+u border toggle
 
 # Gaps, woO!
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 gaps inner 10
 
 # Window assignemt_
