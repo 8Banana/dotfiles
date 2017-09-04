@@ -189,6 +189,9 @@ bindsym $mod+u border toggle
 for_window [class="^.*"] border pixel 1
 gaps inner 10
 
+# I'm not sure I like this.
+#smart_borders on
+
 # Window assignemt_
 for_window [class="Steam"] move container to workspace $work6
 
