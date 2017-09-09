@@ -18,6 +18,7 @@ Plug 'mhinz/vim-startify'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
+"Plug 'landaire/deoplete-d'
 "Plug 'sebastianmarkow/deoplete-rust'
 
 Plug 'kana/vim-textobj-user'
@@ -132,7 +133,7 @@ set mouse=a
 let g:plug_window = "enew"
 
 set fillchars+=stl:\ ,stlnc:\   
-set laststatus=2
+"set laststatus=2
 let g:airline_theme = 'base16'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
