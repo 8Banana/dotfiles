@@ -144,6 +144,7 @@ let g:neomake_cpp_enabled_makers = ['clang', 'clangtidy', 'cppcheck']
 let g:neomake_c_clang_args = ['-std=c99', '-Wall', '-Wextra', '-Weffc++']
 
 let g:neomake_python_python_exe = 'python3'
+let g:neomake_python_enabled_makers = ['flake8']
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1
