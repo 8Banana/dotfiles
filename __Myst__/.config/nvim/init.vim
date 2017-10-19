@@ -1,6 +1,7 @@
 " Sets Python3 to be a different Python than the system one.
 " On Ubuntu LTS the system python tends to lag quite a bit behind, so I have my
 " own version that I update via PPAs et cetera.
+" We set this before anything else because some plugins need to use Python 3.
 let g:python3_host_prog = $HOME . '/bin/python3'
 
 call plug#begin('~/.config/nvim/bundle')
