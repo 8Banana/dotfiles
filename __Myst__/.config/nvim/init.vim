@@ -6,10 +6,10 @@ let g:python3_host_prog = $HOME . '/bin/python3'
 
 call plug#begin('~/.config/nvim/bundle')
 
-" Neomake
+" Syntax Checking (Neomake)
 Plug 'benekastah/neomake'
 
-" Neoterm
+" Better Terminals (Neoterm)
 Plug 'kassio/neoterm'
 
 " EasyAlign
@@ -21,18 +21,18 @@ Plug 'tpope/vim-surround'
 " Targets
 Plug 'wellle/targets.vim'
 
-" Startify
+" Start page (Startify)
 Plug 'mhinz/vim-startify'
 
 " Colorscheme & Transparent Background
 Plug 'chriskempson/base16-vim'
 Plug 'miyakogi/seiya.vim'
 
-" Airline
+" Status line (Airline)
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Deoplete
+" Auto-Completion (Deoplete)
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 "Plug 'landaire/deoplete-d'
@@ -41,7 +41,7 @@ Plug 'zchee/deoplete-jedi'
 " Autotag
 Plug 'craigemery/vim-autotag'
 
-" Customizable text objects
+" Customizable text objects (vim-textobj-user)
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
 Plug 'glts/vim-textobj-comment'
