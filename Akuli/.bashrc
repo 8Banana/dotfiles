@@ -28,3 +28,13 @@ function upload {
 }
 
 cat ~/todolist 2>/dev/null
+
+
+# handy-dandy stuffs
+alias a='git add'
+alias d='git diff'
+alias s='git status'
+alias u=upload
+alias up='upload && ./publish.py'
+function c { git commit -m "$(echo $@)"; }
+shopt -s autocd
