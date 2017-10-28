@@ -7,34 +7,8 @@
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -47,24 +21,26 @@ HIST_STAMPS="dd/mm/yyyy"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-syntax-highlighting)
 
-# PATHs
+# GOPATH.
+  export GOPATH="$HOME/Programming/GoWorkspace"
+
+# PATHs.
   export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.nvm/versions/node/v5.9.1/bin:$HOME/Documents/kotlinc/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
   export PATH="/usr/local/go/bin:$PATH"
   export PATH="$HOME/.cabal/bin:$PATH"
-  export GOPATH="$HOME/Programming/GoWorkspace"
   export PATH="$PATH:$GOPATH/bin"
   export PATH="$HOME/.cargo/bin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
 
-# Oh My ZSH Config
+# Oh My ZSH Config.
 source $ZSH/oh-my-zsh.sh
 
 # Preferred applications.
+# N.B. URxvt looks at a setting in .Xresources for its browser, not at $BROWSER.
 export EDITOR='nvim'
 export BROWSER='chromium-browser'
 export TERMINAL='urxvt'
 
-# Fake being a 256 color xterm
+# Fake being a 256 color xterm, for... reasons.
 export TERM=xterm-256color
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -74,16 +50,16 @@ export TERM=xterm-256color
 alias tmux="tmux -2"
 alias alert="notify-send -i terminal -t 5 'Alert from Terminal!'"
 alias termbin="nc termbin.com 9999"
-function show-ip() {
-    ip addr show wlan0 | grep inet | awk '{ print $2 }' | sed 's_/.*__'
-}
 
-# Base16 shell
+# Base16 shell colorschemes.
 $HOME/Scripts/base16-colorscheme.sh
 
-# Liquidprompt
-[[ $- = *i* ]] && source ~/Applications/liquidprompt/liquidprompt
+# Pure Prompt.
+# Install with command `npm install --global pure-prompt`.
+fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
+autoload -U promptinit; promptinit
+prompt pure
 
-# NVM
+# NVM.
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"

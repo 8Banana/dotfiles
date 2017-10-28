@@ -46,6 +46,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
 Plug 'glts/vim-textobj-comment'
 
+" NERDTree
+Plug 'scrooloose/nerdtree'
+
 " Syntax plugins
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'cespare/vim-toml'
@@ -55,9 +58,6 @@ Plug 'leafo/moonscript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'rhysd/vim-crystal'
 Plug 'rust-lang/rust.vim'
-
-" NERDTree
-Plug 'scrooloose/nerdtree'
 
 call plug#end()
 
