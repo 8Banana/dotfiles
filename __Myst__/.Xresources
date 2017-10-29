@@ -1,5 +1,5 @@
 ! colorscheme
-#include "/home/boring/.Xresources-colorscheme"
+#include ".Xresources-colorscheme"
 #define FONTSIZE 15
 
 ! font
