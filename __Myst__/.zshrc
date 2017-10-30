@@ -48,6 +48,7 @@ export TERM=xterm-256color
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias tmux="tmux -2"
+alias weechat-tmux="tmux attach -t chat || tmux new -s chat weechat"
 alias alert="notify-send -i terminal -t 5 'Alert from Terminal!'"
 alias termbin="nc termbin.com 9999"
 
@@ -61,5 +62,6 @@ autoload -U promptinit; promptinit
 prompt pure
 
 # NVM.
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+# Temporarily disabled due to performance issues.
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
