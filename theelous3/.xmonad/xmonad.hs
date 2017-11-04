@@ -25,3 +25,4 @@ main = xmonad $ defaultConfig
         , ((0,               0x1008ff03), spawn "xbl-tooltip -d")
         , ((0,               0xff61), spawn "scrot")
         ]
+
