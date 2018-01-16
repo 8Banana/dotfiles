@@ -19,7 +19,8 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting)
+#plugins=(git zsh-syntax-highlighting)
+plugins=(zsh-syntax-highlighting)
 
 # GOPATH.
   export GOPATH="$HOME/Programming/GoWorkspace"
@@ -58,8 +59,7 @@ $HOME/Scripts/base16-colorscheme.sh
 # Pure Prompt.
 # Install with command `npm install --global pure-prompt`.
 fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
-autoload -U promptinit; promptinit
-prompt pure
+autoload -U promptinit; promptinit; prompt pure
 
 # NVM.
 # Temporarily disabled due to performance issues.

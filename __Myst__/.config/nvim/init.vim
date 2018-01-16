@@ -82,12 +82,13 @@ let base16colorspace=256
 set background=dark
 colorscheme base16-ocean
 
-augroup plugin_autocommands
-    autocmd!
-
-    " Run Neomake when opening a file or when writing one.
-    autocmd BufWritePost,BufReadPost * Neomake
-augroup END
+"augroup plugin_autocommands
+"    autocmd!
+"
+"    " Run Neomake when opening a file or when writing one.
+"    autocmd BufWritePost,BufReadPost * Neomake
+"augroup END
+call neomake#configure#automake('rwn')
 
 augroup filetype_autocommands
     autocmd!
