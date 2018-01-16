@@ -82,13 +82,15 @@ let base16colorspace=256
 set background=dark
 colorscheme base16-ocean
 
-"augroup plugin_autocommands
-"    autocmd!
-"
-"    " Run Neomake when opening a file or when writing one.
-"    autocmd BufWritePost,BufReadPost * Neomake
-"augroup END
-call neomake#configure#automake('rwn')
+" Automaking is cool-io!
+" I don't really feel the need to adjust this based on battery.
+call neomake#configure#automake({
+\ 'TextChanged':  {},
+\ 'TextChangedI': {},
+\ 'InsertLeave':  {},
+\ 'BufWritePost': {'delay': 0},
+\ 'BufReadPost':  {},
+\ }, 500)
 
 augroup filetype_autocommands
     autocmd!
