@@ -20,7 +20,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git zsh-syntax-highlighting)
-plugins=(zsh-syntax-highlighting)
+plugins=(tmux zsh-syntax-highlighting colored-man-pages)
 
 # GOPATH.
   export GOPATH="$HOME/Programming/GoWorkspace"
@@ -31,6 +31,7 @@ plugins=(zsh-syntax-highlighting)
   export PATH="$HOME/.cabal/bin:$PATH"
   export PATH="$PATH:$GOPATH/bin"
   export PATH="$HOME/.cargo/bin:$PATH"
+  export PATH="/usr/lib/dart/bin:$PATH"
 
 # Oh My ZSH Config.
 source $ZSH/oh-my-zsh.sh
@@ -52,6 +53,11 @@ alias tmux="tmux -2"
 alias weechat-tmux="tmux attach -t chat || tmux new -s chat weechat"
 alias alert="notify-send -i terminal -t 5 'Alert from Terminal!'"
 alias termbin="nc termbin.com 9999"
+
+alias clang='clang-5.0'
+alias clang++='clang++-5.0'
+
+alias git-superlog="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
 # Base16 shell colorschemes.
 $HOME/Scripts/base16-colorscheme.sh

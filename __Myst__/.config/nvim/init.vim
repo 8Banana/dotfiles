@@ -18,6 +18,9 @@ Plug 'junegunn/vim-easy-align'
 " Surround
 Plug 'tpope/vim-surround'
 
+" Fugitive (git wrapper)
+Plug 'tpope/vim-fugitive'
+
 " Targets
 Plug 'wellle/targets.vim'
 
@@ -58,6 +61,11 @@ Plug 'leafo/moonscript-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'rhysd/vim-crystal'
 Plug 'rust-lang/rust.vim'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'elixir-editors/vim-elixir'
+
+" Type in Tandem
+Plug 'typeintandem/nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -84,9 +92,9 @@ colorscheme base16-ocean
 
 " Automaking is cool-io!
 " I don't really feel the need to adjust this based on battery.
+" \ 'TextChangedI': {},
 call neomake#configure#automake({
 \ 'TextChanged':  {},
-\ 'TextChangedI': {},
 \ 'InsertLeave':  {},
 \ 'BufWritePost': {'delay': 0},
 \ 'BufReadPost':  {},
@@ -96,7 +104,8 @@ augroup filetype_autocommands
     autocmd!
 
     " Use 2-space wide indents in these languages, as is convention.
-    autocmd FileType javascript,lisp,clojure,ruby,crystal,haskell,yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd FileType javascript,lisp,clojure,ruby,crystal,haskell,yaml,dart 
+        \ setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
     " Because rust.vim likes to set smart indent.
     autocmd FileType rust setlocal nosmartindent
@@ -107,7 +116,7 @@ augroup autowrite
 
     " Automatically write the file if there were changes when leaving Insert
     " mode.
-    autocmd InsertLeave,FocusLost * if bufname("%") != "" | update | endif
+    autocmd FocusLost * if bufname("%") != "" | update | endif
 augroup END
 
 function! LoadTemplate(extension)
@@ -217,6 +226,8 @@ let g:neomake_c_clang_args = ['-std=c99', '-Wall', '-Wextra', '-Weffc++']
 
 let g:neomake_python_python_exe = 'python3'
 let g:neomake_python_enabled_makers = ['flake8']
+
+let g:neomake_sh_shellcheck_args = ['-fgcc']
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
