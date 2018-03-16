@@ -49,15 +49,9 @@ export TERM=xterm-256color
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+
+# "Vital" aliases go here, the rest are in $ZSH_CUSTOM.
 alias tmux="tmux -2"
-alias weechat-tmux="tmux attach -t chat || tmux new -s chat weechat"
-alias alert="notify-send -i terminal -t 5 'Alert from Terminal!'"
-alias termbin="nc termbin.com 9999"
-
-alias clang='clang-5.0'
-alias clang++='clang++-5.0'
-
-alias git-superlog="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 
 # Base16 shell colorschemes.
 $HOME/Scripts/base16-colorscheme.sh
