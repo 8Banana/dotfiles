@@ -219,7 +219,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " Neomake
-let g:neomake_cpp_clang_args = ['-std=c++1z', '-Wall', '-Wextra', '-Weffc++']
+let g:neomake_cpp_clang_args = ['-std=c++17', '-Wall', '-Wextra', '-Weffc++']
 let g:neomake_cpp_enabled_makers = ['clang', 'clangtidy', 'cppcheck']
 
 let g:neomake_c_clang_args = ['-std=c99', '-Wall', '-Wextra', '-Weffc++']
