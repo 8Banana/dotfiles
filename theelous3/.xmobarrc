@@ -1,9 +1,9 @@
-Config { 
+Config {
 
    -- appearance
      font =         "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"
-   , bgColor =      "#3B3A32"
-   , fgColor =      "#D9D7BF"
+   , bgColor =      "#2F343F"
+   , fgColor =      "#BB9F7F"
    , position =     TopW C 98
    , border =       BottomB
    , borderColor =  "#000000"
@@ -35,7 +35,7 @@ Config {
    --   The --template option controls how the plugin is displayed. Text
    --   color can be set by enclosing in <fc></fc> tags. For more details
    --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
-   , commands = 
+   , commands =
 
         -- network activity monitor (dynamic interface resolution)
         [ Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
@@ -54,7 +54,7 @@ Config {
                              , "--normal"   , "#e2801d"
                              , "--high"     , "#e2371d"
                              ] 10
-                          
+
         -- memory usage monitor
         , Run Memory         [ "--template" ,"Mem: <usedratio>%"
                              , "--Low"      , "20"        -- units: %
@@ -64,16 +64,16 @@ Config {
                              , "--high"     , "#e2371d"
                              ] 10
 
-        -- time and date indicator 
+        -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
         , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
 
         , Run Battery        [ "--template" , "Batt: <acstatus>"
                              , "--Low"      , "10"        -- units: %
                              , "--High"     , "80"        -- units: %
-                             , "--low"      , "#63a557"
+                             , "--low"      , "#e2371d"
                              , "--normal"   , "#e2801d"
-                             , "--high"     , "#e2371d"
+                             , "--high"     , "#63a557"
 
                              , "--" -- battery specific options
                                        -- discharging status
@@ -85,3 +85,4 @@ Config {
                              ] 50
         ]
     }
+
