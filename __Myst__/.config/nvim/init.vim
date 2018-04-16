@@ -39,7 +39,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 "Plug 'landaire/deoplete-d'
-"Plug 'sebastianmarkow/deoplete-rust'
+Plug 'sebastianmarkow/deoplete-rust'
 
 " Autotag
 Plug 'craigemery/vim-autotag'
@@ -218,6 +218,9 @@ let g:airline_theme = 'base16'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+" Neoterm
+let g:neoterm_default_mod = 'botright'
+
 " Neomake
 let g:neomake_cpp_clang_args = ['-std=c++17', '-Wall', '-Wextra', '-Weffc++']
 let g:neomake_cpp_enabled_makers = ['clang', 'clangtidy', 'cppcheck']
@@ -240,8 +243,8 @@ endif
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.6/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 
-let g:deoplete#sources#rust#racer_binary='/home/boring/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='/home/boring/Applications/rust/src'
+let g:deoplete#sources#rust#racer_binary=$HOME . '/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path=$HOME . '/Applications/rust/src'
 
 let g:startify_bookmarks = [ { 'C': '~/.config/nvim/init.vim' } ]
 
