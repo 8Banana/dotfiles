@@ -21,6 +21,9 @@ Plug 'tpope/vim-surround'
 " Fugitive (git wrapper)
 Plug 'tpope/vim-fugitive'
 
+" Highlighted yank
+Plug 'machakann/vim-highlightedyank'
+
 " Targets
 Plug 'wellle/targets.vim'
 
@@ -66,6 +69,7 @@ Plug 'rhysd/vim-crystal'
 Plug 'rust-lang/rust.vim'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'elixir-editors/vim-elixir'
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 
 " Type in Tandem
 "Plug 'typeintandem/nvim', { 'do': ':UpdateRemotePlugins' }
@@ -115,6 +119,7 @@ augroup filetype_autocommands
 
     " Because rust.vim likes to set smart indent.
     autocmd FileType rust setlocal nosmartindent
+    autocmd BufWritePre *.rs silent! RustFmt
 
     autocmd FileType lisp,clojure,scheme,rust,javascript RainbowParentheses
 augroup END
@@ -204,10 +209,13 @@ set directory=~/.config/nvim/swap/
 " clicking.
 set mouse=a
 
-" Writes undoalbe actions to a file. Useful for undoing a change even if you
+" Writes undoable actions to a file. Useful for undoing a change even if you
 " exit vim.
 set undodir=~/.config/nvim/undo/
 set undofile
+
+" Shows a command's effect as you type it
+set inccommand=nosplit
 
 set fillchars+=stl:\ ,stlnc:\   
 
