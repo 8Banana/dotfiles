@@ -114,7 +114,7 @@ augroup filetype_autocommands
     autocmd!
 
     " Use 2-space wide indents in these languages, as is convention.
-    autocmd FileType javascript,lisp,clojure,ruby,crystal,haskell,yaml,dart 
+    autocmd FileType lisp,clojure,ruby,crystal,haskell,yaml,dart 
         \ setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
     " Because rust.vim likes to set smart indent.
