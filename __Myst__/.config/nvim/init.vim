@@ -40,9 +40,9 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Auto-Completion (Deoplete)
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-"Plug 'landaire/deoplete-d'
-Plug 'sebastianmarkow/deoplete-rust'
+Plug 'Shougo/deoplete-clangx'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'junegunn/fzf', { 'dir': '~/Applications/fzf', 'do': './install --all' }
 
 " WebApi-vim (for rust.vim)
 Plug 'mattn/webapi-vim'
@@ -245,7 +245,7 @@ let g:neomake_cpp_enabled_makers = ['clang', 'clangtidy', 'cppcheck']
 let g:neomake_c_clang_args = ['-std=c99', '-Wall', '-Wextra', '-Weffc++']
 
 "" Python
-let g:neomake_python_python_exe = 'python3'
+let g:neomake_python_python_exe = 'python3.6'
 let g:neomake_python_enabled_makers = ['flake8']
 
 "" Shell
@@ -272,6 +272,22 @@ let g:startify_bookmarks = [ { 'C': '~/.config/nvim/init.vim' } ]
 
 " Seiya (transparent background)
 let g:seiya_auto_enable=1
+
+" Language server
+" CTRL-F: language server, langserver
+set hidden
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'python': ['python3', '-m', 'pyls'],
+    \ 'lua': ['lua-lsp'],
+    \ }
+
+let g:LanguageClient_changeThrottle = 0.1
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap K :call LanguageClient#textDocument_hover()<CR>
+nnoremap gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
