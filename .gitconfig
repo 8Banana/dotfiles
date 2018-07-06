@@ -1,0 +1,12 @@
+[user]
+	email = PurpleMyst@users.noreply.github.com
+	name = Purple Myst
+[credential]
+	helper = cache --timeout=3600
+[push]
+	default = simple
+[core]
+	editor = nvim
+[alias]
+	graph = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	back = !$EDITOR $(git-back-helper)

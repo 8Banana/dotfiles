@@ -21,6 +21,9 @@ Plug 'tpope/vim-surround'
 " Fugitive (git wrapper)
 Plug 'tpope/vim-fugitive'
 
+" Highlighted yank
+Plug 'machakann/vim-highlightedyank'
+
 " Targets
 Plug 'wellle/targets.vim'
 
@@ -37,9 +40,12 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Auto-Completion (Deoplete)
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
-"Plug 'landaire/deoplete-d'
-Plug 'sebastianmarkow/deoplete-rust'
+Plug 'Shougo/deoplete-clangx'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'junegunn/fzf', { 'dir': '~/Applications/fzf', 'do': './install --all' }
+
+" WebApi-vim (for rust.vim)
+Plug 'mattn/webapi-vim'
 
 " Autotag
 Plug 'craigemery/vim-autotag'
@@ -63,9 +69,13 @@ Plug 'rhysd/vim-crystal'
 Plug 'rust-lang/rust.vim'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'elixir-editors/vim-elixir'
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 
 " Type in Tandem
-Plug 'typeintandem/nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'typeintandem/nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Rainbow parenthesis
+Plug 'junegunn/rainbow_parentheses.vim'
 
 call plug#end()
 
@@ -104,21 +114,18 @@ augroup filetype_autocommands
     autocmd!
 
     " Use 2-space wide indents in these languages, as is convention.
-    autocmd FileType javascript,lisp,clojure,ruby,crystal,haskell,yaml,dart 
+    autocmd FileType lisp,clojure,ruby,crystal,haskell,yaml,dart 
         \ setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
     " Because rust.vim likes to set smart indent.
     autocmd FileType rust setlocal nosmartindent
+    autocmd BufWritePre *.rs silent! RustFmt
+
+    autocmd FileType lisp,clojure,scheme,rust,javascript RainbowParentheses
 augroup END
 
-augroup autowrite
-    autocmd!
-
-    " Automatically write the file if there were changes when leaving Insert
-    " mode.
-    autocmd FocusLost * if bufname("%") != "" | update | endif
-augroup END
-
+" TODO: Instead of just reading the templates, use a templating engine to add
+" something like custom module names in Rust.
 function! LoadTemplate(extension)
     try
         silent execute '0r ~/.config/nvim/templates/skeleton.' . a:extension
@@ -126,7 +133,7 @@ function! LoadTemplate(extension)
         return
     endtry
 
-    " This only happens if a template was read.
+    " This only happens if a template was read, due to the "catch" above.
     normal Gddgg
 endfunction
 
@@ -154,7 +161,7 @@ tnoremap <Esc> <C-\><C-n>
 vnoremap < <gv
 vnoremap > >gv
 
-" Only underline search results.
+" Underline search results.
 set hlsearch
 highlight Search cterm=underline ctermfg=NONE ctermbg=NONE
 
@@ -166,21 +173,23 @@ set relativenumber
 " This creates a filled-in column at 80 columns, that's meant to help with PEP8
 " compliance and other things. I find it gets annoying with a transparent
 " background.
+" TODO: Turn this on conditionally if the background *isn't* transparent.
 "set colorcolumn=80
 "highlight ColorColumn ctermfg=NONE cterm=bold
 
-" Shows some characters specially, namely tabs and trailing spaces.
+" Shows some characters specially, mostly tabs and trailing spaces.
 set listchars=tab:>-,trail:·,extends:>,precedes:<
 set list
 highlight SpecialKey cterm=bold ctermfg=NONE ctermbg=NONE
 
-" Removes the annoying 'Do you want to read this file again?' prompt.
+" Removes the annoying 'Do you want to read this file again?' prompt when
+" running an external command.
 set autoread
 
 " Removes the really annoying 'smart' indent.
 set nosmartindent
 
-" Expand tabs to be 4 spaces wide, like it should always be.
+" Expand tabs into 4 spaces, like god wants.
 set expandtab
 set shiftwidth=4
 set softtabstop=4
@@ -200,18 +209,24 @@ set directory=~/.config/nvim/swap/
 " clicking.
 set mouse=a
 
-" Writes undoalbe actions to a file. Useful for undoing a change even if you
+" Writes undoable actions to a file. Useful for undoing a change even if you
 " exit vim.
 set undodir=~/.config/nvim/undo/
 set undofile
 
-let g:plug_window = "enew"
+" Shows a command's effect as you type it
+set inccommand=nosplit
 
 set fillchars+=stl:\ ,stlnc:\   
 
+" TODO: Instead of just not showing the preview window, close it once we do
+" choose a completion.
 set completeopt-=preview
 
 " Plugin configuration.
+
+" Use a new buffer for the plug updates window.
+let g:plug_window = "enew"
 
 " Airline
 let g:airline_theme = 'base16'
@@ -222,14 +237,18 @@ let g:airline#extensions#tabline#enabled = 1
 let g:neoterm_default_mod = 'botright'
 
 " Neomake
+
+"" C++
 let g:neomake_cpp_clang_args = ['-std=c++17', '-Wall', '-Wextra', '-Weffc++']
 let g:neomake_cpp_enabled_makers = ['clang', 'clangtidy', 'cppcheck']
 
 let g:neomake_c_clang_args = ['-std=c99', '-Wall', '-Wextra', '-Weffc++']
 
-let g:neomake_python_python_exe = 'python3'
+"" Python
+let g:neomake_python_python_exe = 'python3.6'
 let g:neomake_python_enabled_makers = ['flake8']
 
+"" Shell
 let g:neomake_sh_shellcheck_args = ['-fgcc']
 
 " Deoplete
@@ -240,16 +259,35 @@ if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
 
+"" C++
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.6/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header = '/usr/include/clang'
 
+"" Rust
 let g:deoplete#sources#rust#racer_binary=$HOME . '/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path=$HOME . '/Applications/rust/src'
 
+" Startify
 let g:startify_bookmarks = [ { 'C': '~/.config/nvim/init.vim' } ]
 
-" Seiya
+" Seiya (transparent background)
 let g:seiya_auto_enable=1
+
+" Language server
+" CTRL-F: language server, langserver
+set hidden
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'python': ['python3', '-m', 'pyls'],
+    \ 'lua': ['lua-lsp'],
+    \ }
+
+let g:LanguageClient_changeThrottle = 0.1
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap K :call LanguageClient#textDocument_hover()<CR>
+nnoremap gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " NERDTree
 map <C-n> :NERDTreeToggle<CR>
