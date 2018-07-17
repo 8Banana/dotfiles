@@ -1,9 +1,3 @@
-" Sets Python3 to be a different Python than the system one.
-" On Ubuntu LTS the system python tends to lag quite a bit behind, so I have my
-" own version that I update via PPAs et cetera.
-" We set this before anything else because some plugins need to use Python 3.
-let g:python3_host_prog = $HOME . '/bin/python3'
-
 call plug#begin('~/.config/nvim/bundle')
 
 " Syntax Checking (Neomake)
@@ -40,7 +34,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Auto-Completion (Deoplete)
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/deoplete-clangx'
+"Plug 'Shougo/deoplete-clangx'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'junegunn/fzf', { 'dir': '~/Applications/fzf', 'do': './install --all' }
 
@@ -280,9 +274,11 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'python': ['python3', '-m', 'pyls'],
     \ 'lua': ['lua-lsp'],
+    \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"' . $HOME . '/.cache/cquery"}'],
+    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"' . $HOME . '/.cache/cquery"}'],
     \ }
 
-let g:LanguageClient_changeThrottle = 0.1
+"let g:LanguageClient_changeThrottle = 0.1
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap K :call LanguageClient#textDocument_hover()<CR>
