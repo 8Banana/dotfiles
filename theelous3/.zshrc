@@ -58,7 +58,7 @@ ZSH_THEME="classyTouch"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git virtualenv virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,6 +91,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
+# Paths
+
+# nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+#rust (cargo)
+export PATH="$HOME/.cargo/bin:$PATH"
+
+unsetopt share_history
 

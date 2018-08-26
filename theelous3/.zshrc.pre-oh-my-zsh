@@ -1,0 +1,26 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=2000
+SAVEHIST=1000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/tl3/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias ds='ds'
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+fpath+=('/home/tl3/.nvm/versions/node/v8.9.0/lib/node_modules/pure-prompt/functions')
+autoload -U promptinit; promptinit
+prompt pure

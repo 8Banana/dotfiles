@@ -12,4 +12,3 @@ PROMPT="%(?,%{$fg[red]%}┌─╼${current_dir}%{$reset_color%} ${git_branch}
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[red]%}["
 ZSH_THEME_GIT_PROMPT_SUFFIX="] %{$reset_color%}"
-

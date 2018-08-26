@@ -1,8 +1,8 @@
 #!/bin/bash
-# lol example change
+
 # spawn xmobar
 xmobar &
 
 # Set background image with feh
-#feh --bg-scale /path/to/bground &
+feh --bg-scale ~/Downloads/greenweeb.jpg &
 

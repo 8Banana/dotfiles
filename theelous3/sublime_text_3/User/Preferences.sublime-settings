@@ -1,0 +1,19 @@
+{
+	"added_words":
+	[
+		"blockchain",
+		"crypto",
+		"cryptotoken",
+		"Ethereum"
+	],
+	"color_scheme": "Packages/usr_themes/otomic.tmTheme",
+	"ensure_newline_at_eof_on_save": true,
+	"font_size": 10,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"theme": "Adaptive.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true
+}
