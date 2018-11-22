@@ -5,20 +5,22 @@ import XMonad.Hooks.ManageDocks
 
 import XMonad.Util.EZConfig(additionalKeys)
 
-myLayout = gaps [(U, 10), (R, 10), (L, 10), (D, 10)] $ smartSpacing 10 $ (tiled ||| Mirror tiled ||| Full)
+myLayout = gaps [(U, 5), (R, 5), (L, 5), (D, 5)] $ smartSpacing 5 $ (tiled ||| Mirror tiled ||| Full)
                where 
-	           tiled = Tall nmaster delta ratio
-		   nmaster = 1
-		   ratio = 1/2
-		   delta = 3/100
+                   tiled = Tall nmaster delta ratio
+                   nmaster = 1
+                   ratio = 1/2
+                   delta = 3/100
 
 main = xmonad $ defaultConfig
     { borderWidth = 2,
-      focusedBorderColor = "#226fa5", 
+      focusedBorderColor = "#606060",
       normalBorderColor = "#191919",
+      terminal = "gnome-terminal",
 
-      layoutHook = avoidStruts $ myLayout
-    } `additionalKeys`
+     layoutHook = avoidStruts $ myLayout,
+     handleEventHook = docksEventHook
+     } `additionalKeys`
         [ ((0,               0x1008ff11), spawn "alsa-tooltip -d")
         , ((0,               0x1008ff13), spawn "alsa-tooltip -u")
         , ((0,               0x1008ff02), spawn "xbl-tooltip -u")
